@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Listings</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            /* box-sizing: border-box; */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+
+        .restaurant-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.1s;
+        }
+
+        .restaurant-card img.loaded {
+            opacity: 1;
+        }
+
+        .restaurant-info {
+            margin-top: 10px;
+        }
+
+        .restaurant-info h2 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .restaurant-info p {
+            font-size: 1rem;
+            margin: 5px 0;
+            color: gray;
+        }
+
+        .restaurant-info .rating {
+            font-size: 1rem;
+            color: green;
+        }
+
+        .restaurant-info .price,
+        .restaurant-info .time {
+            font-size: 0.9rem;
+            color: gray;
+        }
+
+        .offer {
+            position: absolute;
+            top: 170px;
+            right: 248px;
+            background-color: #007bff;
+            color: white;
+            padding: 5px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+        }
+
+        /* Individual card hover effect */
+        .restaurant-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            /* Move card up and scale */
+            box-shadow: 0 8px 16px rgba(8, 8, 8, 0.2);
+            /* Darker shadow */
+        }
+
+        .navbar {
+            background-color: white;
+            border: 1px solid rgb(232, 231, 231);
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0 13vw 0px;
+            display: flex;
+
+        }
+
+        .navbar ul li {
+            padding: 38px 10px;
+
+
+
+        }
+
+        .navbar ul li a {
+            color: rgb(136, 135, 135);
+            text-decoration: none;
+            font-size: 16px;
+            border: 1px solid rgb(218, 217, 217);
+            padding: 9px 19px;
+            border-radius: 10px;
+            background-color: rgb(244, 240, 240);
+
+        }
+
+        .navbar ul li a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        @media only screen and (max-width:600px) {
+            .navbar ul li a {
+                color: rgb(136, 135, 135);
+                text-decoration: none;
+                font-size: 16px;
+                border: 1px solid rgb(218, 217, 217);
+                padding: 9px 9px;
+                border-radius: 10px;
+
+            }
+
+            .navbar ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0 3vw 0px;
+                display: flex;
+
+            }
+
+            .offer {
+
+                top: 175px;
+                right: 245px;
+
+            }
+        }
+
+        @media only screen and (max-width:436px) {
+
+            .offer {
+
+                top: 175px;
+                right: 240px;
+
+            }
+
+        }
+
+        @media only screen and (max-width:400px) {
+
+            .offer {
+
+                top: 175px;
+                right: 220px;
+
+            }
+
+        }
+
+        @media only screen and (max-width:380px) {
+
+            .offer {
+
+                top: 175px;
+                right: 200px;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Filter</a></li>
+            <li><a href="#services">PureVeg</a></li>
+            <li><a href="#contact">Cuisines </a></li>
+        </ul>
+    </nav>
+
+
+
+    <div class="container">
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/chains/8/1400208/bea24a7f9aa57fae00bd116cba46302a.jpg?output-format=webp&fit=around|300:273&crop=300:273;*,*"
+                alt="Apna Sweets">
+            <div class="offer">Promoted</div>
+            <div class="restaurant-info">
+                <h2>Apna Sweets</h2>
+                <p>Desserts, Ice Cream, Juice</p>
+                <p class="rating">4.6★</p>
+                <p class="price">₹150 for one</p>
+                <p class="time">16 min</p>
+            </div>
+        </div>
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/1/21022051/c7baed4b6882caa77c057897ea8c95e9_o2_featured_v2.jpg?output-format=webp"
+                alt="99 Chickenwala">
+            <div class="restaurant-info">
+                <h2>99 Chickenwala</h2>
+                <p>North Indian</p>
+                <p class="rating">3.7★</p>
+                <p class="price">₹100 for one</p>
+                <p class="time">16 min</p>
+            </div>
+        </div>
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/chains/6/19572896/1c023b9766646fddc3a30eaee70c5910_featured_v2.jpg?output-format=webp"
+                alt="Hotel Apna Avenue">
+            <div class="offer">60% OFF</div>
+            <div class="restaurant-info">
+                <h2>Hotel Apna Avenue</h2>
+                <p>North Indian, South Indian</p>
+                <p class="rating">4.4★</p>
+                <p class="price">₹400 for one</p>
+                <p class="time">21 min</p>
+            </div>
+        </div>
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/2/1400382/7105664dffc9dbfa6c5e5b325b12e619_o2_featured_v2.jpg"
+                alt="Maa Ki Rasoi">
+            <div class="offer">50% OFF</div>
+            <div class="restaurant-info">
+                <h2>Maa Ki Rasoi</h2>
+                <p>North Indian, South Indian</p>
+                <p class="rating">4.4★</p>
+                <p class="price">₹300 for one</p>
+                <p class="time">35 min</p>
+            </div>
+        </div>
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/chains/3/20458893/7c803609ec13fae003ec534f7c90e5db_o2_featured_v2.jpg"
+                alt="Mahadev Restaurant">
+            <div class="offer">40% OFF</div>
+            <div class="restaurant-info">
+                <h2>Mahadev Restaurant</h2>
+                <p>North Indian, Chinese, Street Food</p>
+                <p class="rating">4.3★</p>
+                <p class="price">₹150 for one</p>
+                <p class="time">14 min</p>
+            </div>
+        </div>
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/9/20840989/4248ed62f262b42d59e3868aa577fd46_o2_featured_v2.jpg?output-format=webp"
+                alt="Domineo's Pizzeria">
+            <div class="offer">10% OFF</div>
+            <div class="restaurant-info">
+                <h2>Domineo's Pizzeria</h2>
+                <p>Pizza, Fast Food</p>
+                <p class="rating">3.3★</p>
+                <p class="price">₹250 for one</p>
+                <p class="time">28 min</p>
+            </div>
+        </div>
+
+
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/chains/7/1400127/5092c6b0d8980fc9a41576e6d46db585_o2_featured_v2.jpg"
+                alt="Oye24">
+            <div class="offer">60% OFF</div>
+            <div class="restaurant-info">
+                <h2>KFC</h2>
+                <p>Burger,Fast Food Role</p>
+                <p class="rating">4.0★</p>
+                <p class="price">₹200 for one</p>
+                <p class="time">32 min</p>
+            </div>
+        </div>
+
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/4/18792924/b792e4aab59790f302d0c8aadc85f9a0_o2_featured_v2.jpg"
+                alt="Oye24">
+            <div class="offer">60% OFF</div>
+            <div class="restaurant-info">
+                <h2>Luxmi Narayan Fast Food</h2>
+                <p>Mithai,Fast Food</p>
+                <p class="rating">4.2★</p>
+                <p class="price">₹100 for one</p>
+                <p class="time">30 min</p>
+            </div>
+        </div>
+
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/6/18458826/9d9a1944eeec98465e29bf923280bde3_o2_featured_v2.jpg"
+                alt="Oye24">
+            <div class="offer">60% OFF</div>
+            <div class="restaurant-info">
+                <h2>24 Hours Bakery Shop</h2>
+                <p>Bakery,Dessert</p>
+                <p class="rating">3.9★</p>
+                <p class="price">₹150 for one</p>
+                <p class="time">28 min</p>
+            </div>
+        </div>
+
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/dish_photos/db2/3e413b3c6b39d71749e3868c1cc99db2.jpg" alt="Oye24">
+            <div class="offer">60% OFF</div>
+            <div class="restaurant-info">
+                <h2>Oye24</h2>
+                <p>North Indian, Street Food</p>
+                <p class="rating">4.1★</p>
+                <p class="price">₹200 for one</p>
+                <p class="time">22 min</p>
+            </div>
+        </div>
+
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/dish_photos/9e7/f41b8abaec571f37de78dcf7477e09e7.jpg" alt="Oye24">
+            <div class="offer">60% OFF</div>
+            <div class="restaurant-info">
+                <h2>Midnight Cravings</h2>
+                <p>North Indian, Street Food</p>
+                <p class="rating">2.7★</p>
+                <p class="price">₹200 for one</p>
+                <p class="time">38 min</p>
+            </div>
+        </div>
+
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/pictures/2/21026932/aec97919aa6c1c494f52d3d0dbf74b10_o2_featured_v2.jpg"
+                alt="Oye24">
+            <div class="offer">60% OFF</div>
+            <div class="restaurant-info">
+                <h2>Turban Hundi</h2>
+                <p></p>
+                <p class="rating">4.3★</p>
+                <p class="price">₹200 for one</p>
+                <p class="time">33 min</p>
+            </div>
+        </div>
+
+
+        <div class="restaurant-card">
+            <img src="https://b.zmtcdn.com/data/dish_photos/694/0d408547cf2353635273784e89708694.jpg" alt="Oye24">
+            <div class="offer">60% OFF</div>
+            <div class="restaurant-info">
+                <h2>The Ministry Of Rolls</h2>
+                <p>North Indian, Chinese Food...</p>
+                <p class="rating">3.7★</p>
+                <p class="price">₹200 for one</p>
+                <p class="time">39 min</p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.querySelectorAll('.restaurant-card img');
+            images.forEach((img, index) => {
+                setTimeout(() => {
+                    img.classList.add('loaded');
+                }, 100 * index);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
